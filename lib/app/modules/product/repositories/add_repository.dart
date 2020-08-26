@@ -8,12 +8,6 @@ class AddRepository extends Disposable {
 
   AddRepository(this.client);
 
-  Future getAllPosts() async {
-    final response =
-        await client.get('https://jsonplaceholder.typicode.com/posts');
-    return PostModel.fromJsonList(response.data);
-  }
-
   //dispose will be called automatically
   @override
   void dispose() {}

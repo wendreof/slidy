@@ -8,6 +8,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'app_controller.dart';
 import 'modules/product/product_module.dart';
 import 'modules/splash/splash_module.dart';
+import 'modules/tasks/tasks_module.dart';
 
 class AppModule extends MainModule {
   @override
@@ -21,6 +22,7 @@ class AppModule extends MainModule {
         ModularRouter(Modular.initialRoute, module: SplashModule()),
         ModularRouter("/home", module: HomeModule()),
         ModularRouter("/product", module: ProductModule()),
+        ModularRouter("/tasks", module: TasksModule()),
       ];
 
   @override

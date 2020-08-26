@@ -1,3 +1,4 @@
+import 'repositories/product_repository.dart';
 import 'repositories/add_repository.dart';
 import 'package:consultoria/app/modules/product/add_product/add_product_module.dart';
 
@@ -10,8 +11,9 @@ import 'product_page.dart';
 class ProductModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => ProductRepository(Dio())),
         Bind((i) => AddRepository(i())),
-        Bind((i) => ProductController()),
+        Bind((i) => ProductController(i())),
       ];
 
   @override

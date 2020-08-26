@@ -1,17 +1,18 @@
+import 'package:consultoria/app/modules/tasks/models/tasks_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'product_controller.dart';
+import 'tasks_controller.dart';
 
-class ProductPage extends StatefulWidget {
+class TasksPage extends StatefulWidget {
   final String title;
-  const ProductPage({Key key, this.title = "Product"}) : super(key: key);
+  const TasksPage({Key key, this.title = "Tasks"}) : super(key: key);
 
   @override
-  _ProductPageState createState() => _ProductPageState();
+  _TasksPageState createState() => _TasksPageState();
 }
 
-class _ProductPageState extends ModularState<ProductPage, ProductController> {
+class _TasksPageState extends ModularState<TasksPage, TasksController> {
   //use 'controller' variable to access controller
 
   @override
@@ -22,23 +23,29 @@ class _ProductPageState extends ModularState<ProductPage, ProductController> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Modular.to.pushNamed("/product/addProduct/1234", arguments: 5678);
+          controller.addTask(TasksModel(id: 1, description: "New Task"));
         },
         child: Icon(Icons.add),
       ),
       body: Observer(
         builder: (_) {
-          if (controller.posts == null) {
+          if (controller.tasks == null) {
             return Center(
               child: CircularProgressIndicator(),
             );
           }
 
+          if (controller.tasks.length == 0) {
+            return Center(
+              child: Text("Nenhuma Task"),
+            );
+          }
+
           return ListView.builder(
-            itemCount: controller.posts.length,
+            itemCount: controller.tasks.length,
             itemBuilder: (_, index) {
               return ListTile(
-                title: Text(controller.posts[index].title),
+                title: Text(controller.tasks[index].description),
               );
             },
           );

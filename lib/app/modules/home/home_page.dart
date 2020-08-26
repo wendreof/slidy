@@ -26,6 +26,12 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               Modular.to.pushNamed("/product");
             },
             child: Text("Go to Product"),
+          ),
+          RaisedButton(
+            onPressed: () {
+              Modular.to.pushNamed("/tasks");
+            },
+            child: Text("Go to Tasks"),
           )
         ],
       ),
